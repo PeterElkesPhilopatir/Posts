@@ -16,15 +16,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-
-        setContentView(R.layout.activity_main)
-
-
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
         viewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
         binding.viewModel = viewModel
         binding.setLifecycleOwner(this)
-        val adapter = PostsAdapter()
 
+        val adapter = PostsAdapter()
         viewModel.data.observe(this, Observer {data->
             adapter.submitList(data)
             binding.recyclerView.adapter = adapter
