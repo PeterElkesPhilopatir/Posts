@@ -1,0 +1,2 @@
+rootProject.name = "FacebookV2"
+include ':app'
